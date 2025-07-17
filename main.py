@@ -1,4 +1,3 @@
-
 import sys
 import os
 import subprocess
@@ -40,15 +39,6 @@ def install_dependencies(packages):
             print(f"✗ Error installing {package}")
             return False
     return True
-
-
-def check_required_files():
-    required_files = [
-        'youtube_handler.py',
-        'video_card.py'
-    ]
-    missing_files = [f for f in required_files if not os.path.exists(f)]
-    return missing_files
 
 
 def ffmpeg_available():
@@ -139,28 +129,19 @@ def main():
     print("DadTunes - YouTube Music Downloader")
     print("=" * 50)
 
-    # Check for required files
-    missing_files = check_required_files()
-    if missing_files:
-        print("❌ Missing files:")
-        for f in missing_files:
-            print(f"   - {f}")
-        print("\nMake sure all files are in the same folder.")
-        input("Press Enter to exit...")
-        return
 
     # Check for dependencies
     missing_packages = check_dependencies()
     if missing_packages:
-        print("❌ Missing dependencies:")
+        print("\u274c Missing dependencies:")
         for package in missing_packages:
             print(f"   - {package}")
         response = input("\nDo you want to install the dependencies automatically? (y/n): ")
         if response.lower() in ['s', 'sim', 'y', 'yes']:
             if install_dependencies(missing_packages):
-                print("✅ All dependencies installed!")
+                print("\u2705 All dependencies installed!")
             else:
-                print("❌ Error installing dependencies. Please install manually:")
+                print("\u274c Error installing dependencies. Please install manually:")
                 print("pip install customtkinter yt-dlp pillow requests")
                 input("Press Enter to exit...")
                 return
@@ -173,7 +154,7 @@ def main():
     # Check and install FFmpeg if needed
     install_ffmpeg_if_needed()
 
-    print("\n🚀 Starting DadTunes...")
+    print("\n\ud83d\ude80 Starting DadTunes...")
 
     try:
         # Import and run the main application
@@ -181,11 +162,11 @@ def main():
         app = DadTunes()
         app.mainloop()
     except ImportError as e:
-        print(f"❌ Error importing the application: {e}")
+        print(f"\u274c Error importing the application: {e}")
         print("Make sure the file 'gui.py' is present.")
         input("Press Enter to exit...")
     except Exception as e:
-        print(f"❌ Unexpected error: {e}")
+        print(f"\u274c Unexpected error: {e}")
         input("Press Enter to exit...")
 
 
