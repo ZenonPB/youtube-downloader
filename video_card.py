@@ -4,25 +4,7 @@ from PIL import Image, ImageTk
 import requests
 import threading
 from io import BytesIO
-
-class Icons():
-
-    @staticmethod
-    def get(icon_name):
-        icons = {
-            "search": "🔍",
-            "folder": "📁",
-            "download": "⬇️",
-            "trash": "🗑️",
-            "music": "🎵",
-            "play": "▶️",
-            "list": "📋",
-            "check": "✅",
-            "error": "❌",
-            "info": "ℹ️",
-            "loading": "⏳"
-        }
-        return icons.get(icon_name, "❓")
+from icons import Icons
 
 class VideoItem(ctk.CTkFrame):
     def __init__(self, parent, video_info, on_download=None, on_remove=None):
@@ -224,7 +206,7 @@ class VideoItem(ctk.CTkFrame):
     def on_download_complete(self, success, message):
         self.set_downloading_state(False)
         if success:
-            self.status_label.configure(text=f"{Icons.get("check")} {message}", text_color="green")
+            self.status_label.configure(text=f"{Icons.get('check')} {message}", text_color="green")
             self.status_label.grid()
 
             self.after(3000, lambda: self.status_label.grid_remove())
