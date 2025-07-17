@@ -154,7 +154,7 @@ def main():
     # Check and install FFmpeg if needed
     install_ffmpeg_if_needed()
 
-    print("\n\ud83d\ude80 Starting DadTunes...")
+    print("\nStarting DadTunes...")
 
     try:
         # Import and run the main application
