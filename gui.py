@@ -9,7 +9,7 @@ from youtube_handler import YoutubeHandler
 from video_card import VideoItem
 from icons import Icons
 
-def _configurar_customtkinter():
+def _config_customtinker_():
     ctk.set_appearance_mode("dark")
     ctk.set_default_color_theme("green")
     try:
@@ -20,7 +20,7 @@ def _configurar_customtkinter():
         except:
             pass
 
-_configurar_customtkinter()
+_config_customtinker_()
 
 class ProgressDialog(ctk.CTkToplevel):
     def __init__(self, parent, total_videos):
